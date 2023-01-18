@@ -2,20 +2,48 @@
   "name": "milos-web",
   "version": "0.1.0",
   "private": true,
+  "description": "Milos React App",
+  "main": "index.js",
+  "author": "Collin Kite, Creative Tim",
+  "license": "MIT",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "bootstrap": "4.5.3",
+    "chart.js": "2.9.4",
+    "classnames": "2.3.1",
+    "gulp": "4.0.2",
+    "gulp-append-prepend": "1.0.9",
+    "moment": "2.29.4",
+    "nouislider": "14.6.3",
+    "perfect-scrollbar": "1.5.5",
+    "react": ">=16.8.0",
+    "react-chartjs-2": "2.11.1",
+    "react-datetime": "3.1.1",
+    "react-dom": ">=16.8.0",
+    "react-router-dom": "5.2.0",
     "react-scripts": "5.0.1",
+    "reactstrap": "8.7.1",
+    "sass": "1.54.0",
     "web-vitals": "^2.1.4"
+  },
+  "peerDependencies": {
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0"
+  },
+  "optionalDependencies": {
+    "jquery": "3.6.0",
+    "typescript": "4.7.4"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build && gulp licenses",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm install && npm start",
+    "compile-sass": "sass src/assets/scss/blk-design-system-react.scss src/assets/css/blk-design-system-react.css",
+    "minify-sass": "sass src/assets/scss/blk-design-system-react.scss src/assets/css/blk-design-system-react.min.css --style compressed"
   },
   "eslintConfig": {
     "extends": [
