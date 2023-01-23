@@ -23,8 +23,6 @@ import PageHeader from "components/PageHeader/PageHeader.js";
 import Footer from "components/Footer/Footer.js";
 
 // sections for this page/view
-import Basics from "views/IndexSections/Basics.js";
-import Navbars from "views/IndexSections/Navbars.js";
 import Tabs from "views/IndexSections/Tabs.js";
 import Pagination from "views/IndexSections/Pagination.js";
 import Notifications from "views/IndexSections/Notifications.js";
