@@ -39,33 +39,26 @@ import {
   Col
 } from "reactstrap";
 
+import IndexNavbar from "components/Navbars/IndexNavbar";
+
 export default function Signup() {
   const [fullNameFocus, setFullNameFocus] = React.useState(false);
   const [emailFocus, setEmailFocus] = React.useState(false);
   const [passwordFocus, setPasswordFocus] = React.useState(false);
+  const [confirmPasswordFocus, setConfirmPasswordFocus] = React.useState(false);
   return (
+    <>
+      <IndexNavbar />
     <div className="section section-signup">
       <Container>
-        <div className="squares square-1" />
-        <div className="squares square-2" />
-        <div className="squares square-3" />
-        <div className="squares square-4" />
         <Row className="row-grid justify-content-between align-items-center">
           <Col lg="6">
-            <h3 className="display-3 text-white">
-              A beautiful Black Design{" "}
-              <span className="text-white">completed with examples</span>
-            </h3>
             <p className="text-white mb-3">
-              The Design System comes with four pre-built pages to help you get
-              started faster. You can change the text and images and you're good
-              to go. More importantly, looking at them will give you a picture
-              of what you can built with this powerful Bootstrap 4 Design
-              System.
+              Already Have an Account?
             </p>
             <div className="btn-wrapper">
-              <Button color="primary" to="register-page" tag={Link}>
-                Register Page
+              <Button color="info" to="login" tag={Link}>
+                Login Here
               </Button>
             </div>
           </Col>
@@ -74,7 +67,7 @@ export default function Signup() {
               <CardHeader>
                 <CardImg
                   alt="..."
-                  src={require("assets/img/square-purple-1.png")}
+                  src={require("assets/img/square1.png")}
                 />
                 <CardTitle tag="h4">Register</CardTitle>
               </CardHeader>
@@ -131,11 +124,28 @@ export default function Signup() {
                       onBlur={(e) => setPasswordFocus(false)}
                     />
                   </InputGroup>
+                  <InputGroup
+                    className={classnames({
+                      "input-group-focus": confirmPasswordFocus
+                    })}
+                  >
+                    <InputGroupAddon addonType="prepend">
+                      <InputGroupText>
+                        <i className="tim-icons icon-check-2" />
+                      </InputGroupText>
+                    </InputGroupAddon>
+                    <Input
+                      placeholder="Confirm Password"
+                      type="text"
+                      onFocus={(e) => setConfirmPasswordFocus(true)}
+                      onBlur={(e) => setConfirmPasswordFocus(false)}
+                    />
+                  </InputGroup>
                   <FormGroup check className="text-left">
                     <Label check>
                       <Input type="checkbox" />
                       <span className="form-check-sign" />I agree to the{" "}
-                      <a href="#pablo" onClick={(e) => e.preventDefault()}>
+                      <a href="https://github.com/CollinKite/Milos-Web#TOS" target={"_blank"}>
                         terms and conditions
                       </a>
                       .
@@ -144,7 +154,7 @@ export default function Signup() {
                 </Form>
               </CardBody>
               <CardFooter>
-                <Button className="btn-round" color="primary" size="lg">
+                <Button className="btn-round" color="info" size="lg">
                   Get Started
                 </Button>
               </CardFooter>
@@ -153,5 +163,6 @@ export default function Signup() {
         </Row>
       </Container>
     </div>
+    </>
   );
 }

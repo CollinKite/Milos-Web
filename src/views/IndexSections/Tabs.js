@@ -34,19 +34,15 @@ import {
 
 export default function Tabs() {
   const [iconTabs, setIconsTabs] = React.useState(1);
-  const [textTabs, setTextTabs] = React.useState(4);
   return (
     <div className="section section-tabs">
       <Container>
         <div className="title">
-          <h3 className="mb-3">Navigation Tabs</h3>
+          <h3 className="mb-3">About</h3>
         </div>
         <Row>
           <Col className="ml-auto mr-auto" md="10" xl="6">
             <div className="mb-3">
-              <small className="text-uppercase font-weight-bold">
-                With icons
-              </small>
             </div>
             <Card>
               <CardHeader>
@@ -57,10 +53,10 @@ export default function Tabs() {
                         active: iconTabs === 1
                       })}
                       onClick={(e) => setIconsTabs(1)}
-                      href="#pablo"
+                      href="#about"
                     >
-                      <i className="tim-icons icon-spaceship" />
-                      Profile
+                      <i className="tim-icons icon-paper" />
+                      About The App
                     </NavLink>
                   </NavItem>
                   <NavItem>
@@ -69,22 +65,10 @@ export default function Tabs() {
                         active: iconTabs === 2
                       })}
                       onClick={(e) => setIconsTabs(2)}
-                      href="#pablo"
+                      
                     >
-                      <i className="tim-icons icon-settings-gear-63" />
-                      Settings
-                    </NavLink>
-                  </NavItem>
-                  <NavItem>
-                    <NavLink
-                      className={classnames({
-                        active: iconTabs === 3
-                      })}
-                      onClick={(e) => setIconsTabs(3)}
-                      href="#pablo"
-                    >
-                      <i className="tim-icons icon-bag-16" />
-                      Options
+                      <i className="tim-icons icon-single-02" />
+                      About Me
                     </NavLink>
                   </NavItem>
                 </Nav>
@@ -93,117 +77,19 @@ export default function Tabs() {
                 <TabContent className="tab-space" activeTab={"link" + iconTabs}>
                   <TabPane tabId="link1">
                     <p>
-                      Collaboratively administrate empowered markets via
-                      plug-and-play networks. Dynamically procrastinate B2C
-                      users after installed base benefits. <br />
-                      <br />
-                      Dramatically visualize customer directed convergence
-                      without revolutionary ROI.
+                    MILOS 
+                    is my capstone project for <a href="https://www.neumont.edu" target="_blank" rel="noreferrer">Neumont College of Computer Science.</a> <br/> <br/>
+                    MILOS helps users gnerate blog posts from videos using AI. 
+                    It uses <a href="https://github.com/openai/whisper" target="_blank" rel="noreferrer">OpenAI's Whisper AI Model</a> to transcribe audio.
+                    and then using a pre-trained GPT-3 model, it processes the transcriptions, and automatically generates an organized blog that follows the video.
                     </p>
                   </TabPane>
                   <TabPane tabId="link2">
+                    <img alt="..." class="img-fluid rounded-circle shadow" src="https://media.licdn.com/dms/image/D5603AQH3D_ws8aCFOg/profile-displayphoto-shrink_400_400/0/1673111179485?e=1680134400&v=beta&t=C8Qrp_FthROMO7XtVHGhH0zygfC9DKRA3BO8oDGWY-M" style={{width: "150px", marginBottom: "10px", marginLeft:"35%"}}></img>
                     <p>
-                      Completely synergize resource taxing relationships via
-                      premier niche markets. Professionally cultivate one-to-one
-                      customer service with robust ideas. <br />
+                      My Name's Collin Kite, I love learning new things, and building fullstack apps! <br />
                       <br />
-                      Dynamically innovate resource-leveling customer service
-                      for state of the art customer service.
-                    </p>
-                  </TabPane>
-                  <TabPane tabId="link3">
-                    <p>
-                      Efficiently unleash cross-media information without
-                      cross-media value. Quickly maximize timely deliverables
-                      for real-time schemas. <br />
-                      <br />
-                      Dramatically maintain clicks-and-mortar solutions without
-                      functional solutions.
-                    </p>
-                  </TabPane>
-                </TabContent>
-              </CardBody>
-            </Card>
-          </Col>
-          <Col className="ml-auto mr-auto" md="10" xl="6">
-            <div className="mb-3">
-              <small className="text-uppercase font-weight-bold">
-                With text
-              </small>
-            </div>
-            <Card>
-              <CardHeader>
-                <Nav className="nav-tabs-info" role="tablist" tabs>
-                  <NavItem>
-                    <NavLink
-                      className={classnames({
-                        active: textTabs === 4
-                      })}
-                      onClick={(e) => setTextTabs(4)}
-                      href="#pablo"
-                    >
-                      Profile
-                    </NavLink>
-                  </NavItem>
-                  <NavItem>
-                    <NavLink
-                      className={classnames({
-                        active: textTabs === 5
-                      })}
-                      onClick={(e) => setTextTabs(5)}
-                      href="#pablo"
-                    >
-                      Settings
-                    </NavLink>
-                  </NavItem>
-                  <NavItem>
-                    <NavLink
-                      className={classnames({
-                        active: textTabs === 6
-                      })}
-                      onClick={(e) => setTextTabs(6)}
-                      href="#pablo"
-                    >
-                      Options
-                    </NavLink>
-                  </NavItem>
-                </Nav>
-              </CardHeader>
-              <CardBody>
-                <TabContent className="tab-space" activeTab={"link" + textTabs}>
-                  <TabPane tabId="link4">
-                    <p>
-                      These cases are perfectly simple and easy to distinguish.
-                      In a free hour, when our power of choice is untrammelled
-                      and when nothing prevents our being able to do what we
-                      like best, every pleasure is to be welcomed and every pain
-                      avoided. <br />
-                      But in certain circumstances and owing to the claims of
-                      duty or the obligations of business it will frequently
-                      occur that pleasures
-                    </p>
-                  </TabPane>
-                  <TabPane tabId="link5">
-                    <p>
-                      I will be the leader of a company that ends up being worth
-                      billions of dollars, because I got the answers. I
-                      understand culture. I am the nucleus. I think that’s a
-                      responsibility that I have, to push possibilities, to show
-                      people, this is the level that things could be at. I think
-                      that’s a responsibility that I have, to push
-                      possibilities, to show people, this is the level that
-                      things could be at.
-                    </p>
-                  </TabPane>
-                  <TabPane tabId="link6">
-                    <p>
-                      I think that’s a responsibility that I have, to push
-                      possibilities, to show people, this is the level that
-                      things could be at. So when you get something that has the
-                      name Kanye West on it, it’s supposed to be pushing the
-                      furthest possibilities. I will be the leader of a company
-                      that ends up being worth billions of dollars, because I
-                      got the answers. I understand culture. I am the nucleus.
+                      I'm a computer science student and have worked hard to earn my degree in just two years! (Oct 2021 - Dec 2023). During my studies, I've built full-stack applications for desktop, mobile, and web using various programming languages and technologies including Java, C#, Python, C++, Git, SQL, MongoDB, and more!
                     </p>
                   </TabPane>
                 </TabContent>

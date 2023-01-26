@@ -18,14 +18,17 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
+import Aos from "aos";
 
 import "assets/css/nucleo-icons.css";
 import "assets/scss/blk-design-system-react.scss";
 import "assets/demo/demo.css";
+import "assets/aos.css";
 
 import Index from "views/Index.js";
-import RegisterPage from "views/examples/RegisterPage.js";
-import ProfilePage from "views/examples/ProfilePage.js";
+import Signup from "views/Signup";
+
+Aos.init();
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -33,14 +36,7 @@ root.render(
   <BrowserRouter>
     <Switch>
       <Route path="/home" render={(props) => <Index {...props} />} />
-      <Route
-        path="/register-page"
-        render={(props) => <RegisterPage {...props} />}
-      />
-      <Route
-        path="/profile-page"
-        render={(props) => <ProfilePage {...props} />}
-      />
+      <Route path="/signup" render={(props) => <Signup {...props} />} />
       <Redirect from="/" to="/home" />
     </Switch>
   </BrowserRouter>
