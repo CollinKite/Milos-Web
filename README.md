@@ -37,6 +37,7 @@ By using this app, you acknowledge that you have read and understood this Agreem
 ## Quick start
 
 - [Clone from Github](https://github.com/CollinKite/milos-web)
+- [Have NodeJS Installed](https://nodejs.org/en/download/)
 - `npm i`
 - `npm start`
 
