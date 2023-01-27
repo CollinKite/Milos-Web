@@ -98,7 +98,7 @@ export default function IndexNavbar() {
           <div className="navbar-collapse-header">
             <Row>
               <Col className="collapse-brand" xs="6">
-                <a href="#" onClick={(e) => e.preventDefault()}>
+                <a href="/" onClick={(e) => e.preventDefault()}>
                   Milos
                 </a>
               </Col>
@@ -142,7 +142,6 @@ export default function IndexNavbar() {
               <Button
                 className="nav-link d-none d-lg-block"
                 color="warning"
-                target=""
                 onClick={logout}
               >
                 <i className="tim-icons icon-single-02" /> Logout
@@ -153,7 +152,7 @@ export default function IndexNavbar() {
                 className="nav-link d-none d-lg-block"
                 color="primary"
                 tag={Link}
-                to="/signup"
+                to="/generate"
               >
                 <i className="tim-icons icon-single-copy-04" />  Generate Blog Post
               </Button>

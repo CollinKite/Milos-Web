@@ -81,7 +81,7 @@ export default function Tabs() {
                     is my capstone project for <a href="https://www.neumont.edu" target="_blank" rel="noreferrer">Neumont College of Computer Science.</a> <br/> <br/>
                     MILOS helps users gnerate blog posts from videos using AI. 
                     It uses <a href="https://github.com/openai/whisper" target="_blank" rel="noreferrer">OpenAI's Whisper AI Model</a> to transcribe audio.
-                    and then using a pre-trained GPT-3 model, it processes the transcriptions, and automatically generates an organized blog that follows the video.
+                    and then using a custom trained GPT-3 model, it processes the transcriptions, and automatically generates an organized blog that follows the video.
                     </p>
                   </TabPane>
                   <TabPane tabId="link2">
