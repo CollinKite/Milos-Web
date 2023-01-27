@@ -64,11 +64,6 @@ export default function IndexNavbar() {
   const onCollapseExited = () => {
     setCollapseOut("");
   };
-  const scrollToDownload = () => {
-    document
-      .getElementById("about")
-      .scrollIntoView({ behavior: "smooth" });
-  };
   return (
     <Navbar className={"fixed-top " + color} color-on-scroll="100" expand="lg">
       <Container>
@@ -142,18 +137,9 @@ export default function IndexNavbar() {
                 className="nav-link d-none d-lg-block"
                 color="warning"
                 target=""
-                href="/profile-page"
+                href="/login"
               >
                 <i className="tim-icons icon-single-02" /> Login
-              </Button>
-            </NavItem>
-            <NavItem>
-              <Button
-                className="nav-link d-none d-lg-block"
-                color="default"
-                onClick={scrollToDownload}
-              >
-                <i className="tim-icons icon-minimal-down" /> About
               </Button>
             </NavItem>
           </Nav>

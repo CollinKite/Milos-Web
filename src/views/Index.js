@@ -2,6 +2,7 @@ import React from "react";
 
 // core components
 import IndexNavbar from "components/Navbars/IndexNavbar.js";
+import LoggedInNavbar from "components/Navbars/LoggedInNavbar.js";
 import PageHeader from "components/PageHeader/PageHeader.js";
 import Footer from "components/Footer/Footer.js";
 import Aos from "aos";
@@ -15,15 +16,12 @@ import Tabs from "views/IndexSections/Tabs.js";
 
 export default function Index() {
   Aos.init();
-  console.log("AOS initialized");
 
   const particlesInit = useCallback(async engine => {
-    console.log(engine);
     await loadFull(engine);
   }, []);
 
   const particlesLoaded = useCallback(async container => {
-      await console.log(container);
   }, []);
 
   React.useEffect(() => {
@@ -35,7 +33,7 @@ export default function Index() {
   }, []);
   return (
     <>
-      <IndexNavbar />
+      {localStorage.getItem('token') ? <LoggedInNavbar /> : <IndexNavbar />}
       <div className="wrapper">
       <div id="particles-js">
         <Particles

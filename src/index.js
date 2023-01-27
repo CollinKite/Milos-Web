@@ -27,6 +27,7 @@ import "assets/aos.css";
 
 import Index from "views/Index.js";
 import Signup from "views/Signup";
+import Login from "views/Login";
 
 Aos.init();
 
@@ -37,6 +38,7 @@ root.render(
     <Switch>
       <Route path="/home" render={(props) => <Index {...props} />} />
       <Route path="/signup" render={(props) => <Signup {...props} />} />
+      <Route path="/login" render={(props) => <Login {...props} />} />
       <Redirect from="/" to="/home" />
     </Switch>
   </BrowserRouter>

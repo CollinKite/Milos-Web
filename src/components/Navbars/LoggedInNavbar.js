@@ -64,11 +64,12 @@ export default function IndexNavbar() {
   const onCollapseExited = () => {
     setCollapseOut("");
   };
-  const scrollToDownload = () => {
-    document
-      .getElementById("about")
-      .scrollIntoView({ behavior: "smooth" });
+
+  const logout = () => {
+    localStorage.removeItem("token");
+    window.location.href = "/login";
   };
+
   return (
     <Navbar className={"fixed-top " + color} color-on-scroll="100" expand="lg">
       <Container>
@@ -142,9 +143,19 @@ export default function IndexNavbar() {
                 className="nav-link d-none d-lg-block"
                 color="warning"
                 target=""
-                href="/profile-page"
+                onClick={logout}
               >
                 <i className="tim-icons icon-single-02" /> Logout
+              </Button>
+            </NavItem>
+            <NavItem>
+              <Button
+                className="nav-link d-none d-lg-block"
+                color="primary"
+                tag={Link}
+                to="/signup"
+              >
+                <i className="tim-icons icon-single-copy-04" />  Generate Blog Post
               </Button>
             </NavItem>
           </Nav>

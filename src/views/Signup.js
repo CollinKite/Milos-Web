@@ -1,23 +1,20 @@
 /*!
-
 =========================================================
 * BLK Design System React - v1.2.1
 =========================================================
-
 * Product Page: https://www.creative-tim.com/product/blk-design-system-react
 * Copyright 2022 Creative Tim (https://www.creative-tim.com)
 * Licensed under MIT (https://github.com/creativetimofficial/blk-design-system-react/blob/main/LICENSE.md)
-
 * Coded by Creative Tim
-
 =========================================================
-
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
+Copyright 2023 Collin Kite
 */
-import React from "react";
+import React, {useState} from "react";
 import classnames from "classnames";
 import { Link } from "react-router-dom";
+import Footer from "components/Footer/Footer";
 // reactstrap components
 import {
   Button,
@@ -40,12 +37,65 @@ import {
 } from "reactstrap";
 
 import IndexNavbar from "components/Navbars/IndexNavbar";
+import ReCAPTCHA from "react-google-recaptcha";
 
 export default function Signup() {
+  if(localStorage.getItem("token") !== null) {
+    window.location.href = "/";
+  }
   const [fullNameFocus, setFullNameFocus] = React.useState(false);
   const [emailFocus, setEmailFocus] = React.useState(false);
   const [passwordFocus, setPasswordFocus] = React.useState(false);
   const [confirmPasswordFocus, setConfirmPasswordFocus] = React.useState(false);
+  const [recaptchaToken, setRecaptchaToken] = useState(null);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [TOS, setTOS] = useState(false);
+  const isEnabled = name.length > 0 && email.length > 0 && password.length > 0 && confirmPassword.length > 0 && TOS && recaptchaToken !== null;
+  const sleep = ms => new Promise(r => setTimeout(r, ms));
+
+<button disabled={!isEnabled}>Sign up</button>;
+
+
+  function signup() {
+    if (password !== confirmPassword) {
+      alert("Passwords do not match");
+      return;
+    }
+    fetch("http://127.0.0.1:8000/signup", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: name,
+        username: email,
+        password: password,
+        token: recaptchaToken,
+      }),
+    })
+    .then((res) => {
+      if (res.status === 201) {
+        alert("Successfully signed up");
+        sleep(1000);
+        window.location.href = "/login";
+      } else {
+        res.json().then((data) => {
+          alert(data.message);
+        }
+        );
+      }
+    }
+    );
+  }
+
+
+  const changeTOS = (event) => {
+    setTOS(event.target.checked);
+  }
+
   return (
     <>
       <IndexNavbar />
@@ -88,6 +138,7 @@ export default function Signup() {
                       type="text"
                       onFocus={(e) => setFullNameFocus(true)}
                       onBlur={(e) => setFullNameFocus(false)}
+                      onChange={(e) => setName(e.target.value)}
                     />
                   </InputGroup>
                   <InputGroup
@@ -105,6 +156,7 @@ export default function Signup() {
                       type="text"
                       onFocus={(e) => setEmailFocus(true)}
                       onBlur={(e) => setEmailFocus(false)}
+                      onChange={(e) => setEmail(e.target.value)}
                     />
                   </InputGroup>
                   <InputGroup
@@ -119,9 +171,10 @@ export default function Signup() {
                     </InputGroupAddon>
                     <Input
                       placeholder="Password"
-                      type="text"
+                      type="password"
                       onFocus={(e) => setPasswordFocus(true)}
                       onBlur={(e) => setPasswordFocus(false)}
+                      onChange={(e) => setPassword(e.target.value)}
                     />
                   </InputGroup>
                   <InputGroup
@@ -136,16 +189,18 @@ export default function Signup() {
                     </InputGroupAddon>
                     <Input
                       placeholder="Confirm Password"
-                      type="text"
+                      type="password"
                       onFocus={(e) => setConfirmPasswordFocus(true)}
                       onBlur={(e) => setConfirmPasswordFocus(false)}
+                      onChange={(e) => setConfirmPassword(e.target.value)}
+
                     />
                   </InputGroup>
                   <FormGroup check className="text-left">
                     <Label check>
-                      <Input type="checkbox" />
+                      <Input type="checkbox" onChange={changeTOS} />
                       <span className="form-check-sign" />I agree to the{" "}
-                      <a href="https://github.com/CollinKite/Milos-Web#TOS" target={"_blank"}>
+                      <a href="https://github.com/CollinKite/Milos-Web#TOS" target={"_blank"} rel={"noreferrer"}>
                         terms and conditions
                       </a>
                       .
@@ -154,7 +209,8 @@ export default function Signup() {
                 </Form>
               </CardBody>
               <CardFooter>
-                <Button className="btn-round" color="info" size="lg">
+                <ReCAPTCHA theme="dark" sitekey="6LdPHi0kAAAAAB9y1A8wns_RqUQS81ZIzGoLPlbR" onChange={(token) => setRecaptchaToken(token)}/>
+                <Button className="btn-round" color="info" size="lg" onClick={signup} disabled={!isEnabled}>
                   Get Started
                 </Button>
               </CardFooter>
@@ -162,6 +218,7 @@ export default function Signup() {
           </Col>
         </Row>
       </Container>
+      <Footer />
     </div>
     </>
   );
