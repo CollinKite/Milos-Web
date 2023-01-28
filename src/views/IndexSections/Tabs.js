@@ -85,11 +85,11 @@ export default function Tabs() {
                     </p>
                   </TabPane>
                   <TabPane tabId="link2">
-                    <img alt="..." className="img-fluid rounded-circle shadow" src="https://media.licdn.com/dms/image/D5603AQH3D_ws8aCFOg/profile-displayphoto-shrink_400_400/0/1673111179485?e=1680134400&v=beta&t=C8Qrp_FthROMO7XtVHGhH0zygfC9DKRA3BO8oDGWY-M" style={{width: "150px", marginBottom: "10px", marginLeft:"35%"}}></img>
+                    <img alt="..." className="img-fluid rounded-circle shadow" src="https://media.licdn.com/dms/image/D5603AQH3D_ws8aCFOg/profile-displayphoto-shrink_400_400/0/1673111179485?e=1680134400&v=beta&t=C8Qrp_FthROMO7XtVHGhH0zygfC9DKRA3BO8oDGWY-M" style={{display:"block", marginLeft:"auto", marginRight:"auto", width:"200px", marginBottom:"30px"}}></img>
                     <p>
                       My Name's Collin Kite, I love learning new things, and building fullstack apps! <br />
                       <br />
-                      I'm a computer science student and have worked hard to earn my degree in just two years! (Oct 2021 - Dec 2023). During my studies, I've built full-stack applications for desktop, mobile, and web using various programming languages and technologies including Java, C#, Python, C++, Git, SQL, MongoDB, and more!
+                      I'm a computer science student and have worked hard to earn my degree in just two years! (Oct 2021 - Dec 2023). During my studies, I've built full-stack applications for desktop, mobile, and web using various programming languages and technologies including Java, C#, Python, C++, React, SQL, MongoDB, and more!
                     </p>
                   </TabPane>
                 </TabContent>

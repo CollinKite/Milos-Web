@@ -9,7 +9,7 @@ const PageHeader = () => {
          <Container>
          <div className="content-center brand">
            <h1 className="h1-seo" data-aos="fade-up" data-aos-offset="0" data-aos-once="true">MILOS</h1>
-           <h3 className="d-sm-block" data-aos="fade-up" data-aos-offset="0" data-aos-once="true">
+           <h3 className="d-sm-block"  data-aos="fade-up" data-aos-duration="1000" data-aos-easing="ease-in-out" data-aos-once="true" >
            Create AI Generated Blog Posts From Videos!
            </h3>
          </div>
