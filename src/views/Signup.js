@@ -13,7 +13,6 @@ Copyright 2023 Collin Kite
 */
 import React, {useState} from "react";
 import classnames from "classnames";
-import { Link } from "react-router-dom";
 import Footer from "components/Footer/Footer";
 // reactstrap components
 import {
@@ -107,7 +106,7 @@ export default function Signup() {
               Already Have an Account?
             </p>
             <div className="btn-wrapper">
-              <Button color="info" to="login" tag={Link}>
+              <Button color="info" href="/login">
                 Login Here
               </Button>
             </div>

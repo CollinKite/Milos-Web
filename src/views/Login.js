@@ -1,6 +1,5 @@
 import React, {useState} from "react";
 import classnames from "classnames";
-import { Link } from "react-router-dom";
 import Footer from "components/Footer/Footer";
 // reactstrap components
 import {
@@ -89,7 +88,7 @@ export default function Signup() {
               Don't Have an Account?
             </p>
             <div className="btn-wrapper">
-              <Button color="info" to="signup" tag={Link}>
+              <Button color="info" href="/signup">
                 Sign Up Here
               </Button>
             </div>

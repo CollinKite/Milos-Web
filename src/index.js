@@ -17,7 +17,7 @@
 */
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route}from 'react-router-dom';
 import Aos from "aos";
 
 import "assets/css/nucleo-icons.css";
@@ -34,12 +34,11 @@ Aos.init();
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
-  <BrowserRouter>
-    <Switch>
-      <Route path="/home" render={(props) => <Index {...props} />} />
-      <Route path="/signup" render={(props) => <Signup {...props} />} />
-      <Route path="/login" render={(props) => <Login {...props} />} />
-      <Redirect from="/" to="/home" />
-    </Switch>
-  </BrowserRouter>
+  <Router>
+    <Routes>
+      <Route exact path='/' element={<Index/>} />
+      <Route path='/login' element={<Login/>} />
+      <Route path='/signup' element={<Signup/>} />
+    </Routes>
+  </Router>
 );
