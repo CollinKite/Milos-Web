@@ -14,6 +14,8 @@ Copyright 2023 Collin Kite
 import React, {useState} from "react";
 import classnames from "classnames";
 import Footer from "components/Footer/Footer";
+import { ToastContainer, toast } from 'react-toastify';
+import '../../node_modules/react-toastify/dist/ReactToastify.css';
 // reactstrap components
 import {
   Button,
@@ -53,14 +55,32 @@ export default function Signup() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [TOS, setTOS] = useState(false);
   const isEnabled = name.length > 0 && email.length > 0 && password.length > 0 && confirmPassword.length > 0 && TOS && recaptchaToken !== null;
-  const sleep = ms => new Promise(r => setTimeout(r, ms));
 
-<button disabled={!isEnabled}>Sign up</button>;
-
+  function toastMsg(message, boolSuccess)
+  {
+    const props = {
+      position: "bottom-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: false,
+      progress: undefined,
+      theme: "dark",
+    }
+    if (boolSuccess)
+    {
+      toast.success(message, props);
+    }
+    else
+    {
+      toast.error(message, props);
+    }
+  }
 
   function signup() {
     if (password !== confirmPassword) {
-      alert("Passwords do not match");
+      toastMsg("Passwords do not match", false);
       return;
     }
     fetch("https://api.getmilos.app/signup", {
@@ -77,12 +97,11 @@ export default function Signup() {
     })
     .then((res) => {
       if (res.status === 201) {
-        alert("Successfully signed up");
-        sleep(1000);
-        window.location.href = "/login";
+        toastMsg("Successfully signed up", true);
+        setTimeout(function(){ window.location.href = "/login"; }, 4000);
       } else {
         res.json().then((data) => {
-          alert(data.message);
+          toastMsg(data.message, false);
         }
         );
       }
@@ -212,6 +231,7 @@ export default function Signup() {
                 <Button className="btn-round" color="info" size="lg" onClick={signup} disabled={!isEnabled}>
                   Get Started
                 </Button>
+                <ToastContainer limit={1}/>
               </CardFooter>
             </Card>
           </Col>

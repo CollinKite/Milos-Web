@@ -21,6 +21,7 @@
     "react-google-recaptcha": "^2.1.0",
     "react-router-dom": "^6.4.3",
     "react-scripts": "5.0.1",
+    "react-toastify": "^9.1.1",
     "react-tsparticles": "^2.8.0",
     "reactstrap": "8.7.1",
     "sass": "^1.57.1",
@@ -29,7 +30,7 @@
   },
   "overrides": {
     "autoprefixer": "10.4.5"
-},
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

@@ -24,6 +24,8 @@ import {
 
 import IndexNavbar from "components/Navbars/IndexNavbar";
 import ReCAPTCHA from "react-google-recaptcha";
+import { ToastContainer, toast } from 'react-toastify';
+import '../../node_modules/react-toastify/dist/ReactToastify.css';
 
 export default function Signup() {
   if(localStorage.getItem("token") !== null) {
@@ -36,9 +38,28 @@ export default function Signup() {
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
   const isEnabled = email.length > 0 && password.length > 0 && recaptchaToken !== null;
-  const sleep = ms => new Promise(r => setTimeout(r, ms));
+  function toastMsg(message, boolSuccess)
+  {
+    const props = {
+      position: "bottom-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: false,
+      progress: undefined,
+      theme: "dark",
+    }
+    if (boolSuccess)
+    {
+      toast.success(message, props);
+    }
+    else
+    {
+      toast.error(message, props);
+    }
+  }
 
-<button disabled={!isEnabled}>Sign up</button>;
 
 
   function login() {
@@ -58,13 +79,12 @@ export default function Signup() {
       if (res.status === 200) {
         res.json().then((data) => {
             localStorage.setItem("token", data.token);
-            alert("Successfully Logged In");
-            sleep(1000);
-            window.location.href = "/app";
+            toastMsg("Successfully Logged In", true);
+            setTimeout(function(){ window.location.href = "/"; }, 4000);
         });
       } else {
         res.json().then((data) => {
-          alert(data.message);
+          toastMsg(data.message, false);
         }
         );
       }
@@ -153,6 +173,7 @@ export default function Signup() {
                 <Button className="btn-round" color="info" size="lg" onClick={login} disabled={!isEnabled}>
                   Login
                 </Button>
+                <ToastContainer limit={1}/>
               </CardFooter>
             </Card>
           </Col>
