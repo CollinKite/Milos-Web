@@ -136,7 +136,8 @@ export default function IndexNavbar() {
               <Button
                 className="nav-link d-none d-lg-block"
                 color="warning"
-                href="/login"
+                tag={Link}
+                to="/login"
               >
                 <i className="tim-icons icon-single-02" /> Login
               </Button>
