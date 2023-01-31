@@ -1,4 +1,7 @@
-function Milos() {
+import React from 'react';
+import { useDropzone } from 'react-dropzone';
+
+export default function Milos(){
   return (
     <div>
       <input type="file"
@@ -7,5 +10,3 @@ function Milos() {
     </div>
   );
 }
-
-export default Milos;
