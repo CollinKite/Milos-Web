@@ -1,4 +1,5 @@
 # Milos - Frontend
+![Landing Page](https://www.upwork.com/att/download/portfolio/persons/uid/959119707659628544/profile/projects/files/a46ea91e-c84e-4458-857d-744fc213dff1)
 
 MILOS is a web app that helps users create blog posts from videos by generating captions and putting them through a trained GPT-3 Model which will automatically break the video down into multiple chapters and generate the blog post. Technology involves, OpenAI Whisper and GPT-3, MongoDB, React, Python/Flask, and Azure for cloud deployment.
 
