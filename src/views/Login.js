@@ -38,8 +38,8 @@ export default function Signup() {
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
   const isEnabled = email.length > 0 && password.length > 0 && recaptchaToken !== null;
-  function toastMsg(message, boolSuccess)
-  {
+
+  const handleClick = () => {
     const props = {
       position: "bottom-center",
       autoClose: 3000,
@@ -50,47 +50,46 @@ export default function Signup() {
       progress: undefined,
       theme: "dark",
     }
-    if (boolSuccess)
-    {
-      toast.success(message, props);
-    }
-    else
-    {
-      toast.error(message, props);
-    }
-  }
-
-
+    toast.promise(login(), {
+      pending: 'Logging In...',
+      success: 'Logged In! 🎉',
+      error: 'Password Invalid 😞',
+    }, props).then(() => {
+      window.location.href = "/";
+    });
+  };
 
   function login() {
-    fetch("https://api.getmilos.app/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        username: email,
-        password: password,
-        token: recaptchaToken,
-        rememberMe: rememberMe,
-      }),
-    })
-    .then((res) => {
-      if (res.status === 200) {
-        res.json().then((data) => {
-            localStorage.setItem("token", data.token);
-            toastMsg("Successfully Logged In", true);
-            setTimeout(function(){ window.location.href = "/"; }, 4000);
+    return new Promise((resolve, reject) => {
+      fetch("https://api.getmilos.app/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username: email,
+          password: password,
+          token: recaptchaToken,
+          rememberMe: rememberMe,
+        }),
+      })
+        .then((res) => {
+          if (res.status === 200) {
+            res.json().then((data) => {
+              localStorage.setItem("token", data.token);
+              resolve();
+            });
+          } else {
+            res.json().then((data) => {
+              reject();
+            });
+          }
+        })
+        .catch((error) => {
+          reject();
         });
-      } else {
-        res.json().then((data) => {
-          toastMsg(data.message, false);
-        }
-        );
-      }
-    }
-    );
-  }
+    });
+  }  
 
   const toggleRememberMe = (event) => {
     setRememberMe(event.target.checked);
@@ -170,7 +169,7 @@ export default function Signup() {
               </CardBody>
               <CardFooter>
                 <ReCAPTCHA theme="dark" sitekey="6LdPHi0kAAAAAB9y1A8wns_RqUQS81ZIzGoLPlbR" onChange={(token) => setRecaptchaToken(token)}/>
-                <Button className="btn-round" color="info" size="lg" onClick={login} disabled={!isEnabled}>
+                <Button className="btn-round" color="info" size="lg" onClick={handleClick} disabled={!isEnabled}>
                   Login
                 </Button>
                 <ToastContainer limit={1}/>

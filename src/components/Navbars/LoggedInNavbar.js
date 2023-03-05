@@ -152,9 +152,19 @@ export default function IndexNavbar() {
                 className="nav-link d-none d-lg-block"
                 color="primary"
                 tag={Link}
-                to="/generate"
+                to="/upload"
               >
-                <i className="tim-icons icon-single-copy-04" />  Generate Blog Post
+                <i className="tim-icons icon-upload" />  Upload File
+              </Button>
+            </NavItem>
+            <NavItem>
+              <Button
+                className="nav-link d-none d-lg-block"
+                color="success"
+                tag={Link}
+                to="/blogs"
+              >
+                <i className="tim-icons icon-single-copy-04" /> View Generated Blogs
               </Button>
             </NavItem>
           </Nav>

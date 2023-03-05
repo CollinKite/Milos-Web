@@ -25,12 +25,17 @@ import "assets/scss/blk-design-system-react.scss";
 import "assets/demo/demo.css";
 import "assets/aos.css";
 
+import withAuth from "components/withAuth";
 import Index from "views/Index.js";
 import Signup from "views/Signup";
 import Login from "views/Login";
+import Milos from "views/App";
+import BlogPage from "components/GetUserBlogs";
 
 Aos.init();
 
+const Upload = withAuth(Milos);
+const Blogs = withAuth(BlogPage);
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
@@ -39,6 +44,8 @@ root.render(
       <Route exact path='/' element={<Index/>} />
       <Route path='/login' element={<Login/>} />
       <Route path='/signup' element={<Signup/>} />
+      <Route path='/upload' element={<Upload/>} />
+      <Route path='/blogs' element={<Blogs/>} />
     </Routes>
   </Router>
 );

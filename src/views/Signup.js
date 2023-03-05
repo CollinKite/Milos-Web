@@ -14,8 +14,6 @@ Copyright 2023 Collin Kite
 import React, {useState} from "react";
 import classnames from "classnames";
 import Footer from "components/Footer/Footer";
-import { ToastContainer, toast } from 'react-toastify';
-import '../../node_modules/react-toastify/dist/ReactToastify.css';
 // reactstrap components
 import {
   Button,
@@ -39,6 +37,8 @@ import {
 
 import IndexNavbar from "components/Navbars/IndexNavbar";
 import ReCAPTCHA from "react-google-recaptcha";
+import { ToastContainer, toast } from 'react-toastify';
+import '../../node_modules/react-toastify/dist/ReactToastify.css';
 
 export default function Signup() {
   if(localStorage.getItem("token") !== null) {
@@ -56,57 +56,57 @@ export default function Signup() {
   const [TOS, setTOS] = useState(false);
   const isEnabled = name.length > 0 && email.length > 0 && password.length > 0 && confirmPassword.length > 0 && TOS && recaptchaToken !== null;
 
-  function toastMsg(message, boolSuccess)
-  {
-    const props = {
-      position: "bottom-center",
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: false,
-      draggable: false,
-      progress: undefined,
-      theme: "dark",
-    }
-    if (boolSuccess)
-    {
-      toast.success(message, props);
-    }
-    else
-    {
-      toast.error(message, props);
-    }
+
+const handleClick = () => {
+  const props = {
+    position: "bottom-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: false,
+    draggable: false,
+    progress: undefined,
+    theme: "dark",
   }
+  toast.promise(signup(), {
+    pending: 'Signing Up...',
+    success: 'Signed Up! 🎉',
+    error: 'Error Signing Up 😞 Check your email and make sure you\'re not already signed up.',
+  }, props).then(() => {
+    window.location.href = "/login";
+  });
+};
 
   function signup() {
-    if (password !== confirmPassword) {
-      toastMsg("Passwords do not match", false);
-      return;
-    }
-    fetch("https://api.getmilos.app/signup", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name: name,
-        username: email,
-        password: password,
-        token: recaptchaToken,
-      }),
-    })
-    .then((res) => {
-      if (res.status === 201) {
-        toastMsg("Successfully signed up", true);
-        setTimeout(function(){ window.location.href = "/login"; }, 4000);
-      } else {
-        res.json().then((data) => {
-          toastMsg(data.message, false);
-        }
-        );
-      }
-    }
-    );
+    return new Promise((resolve, reject) => {
+      fetch("https://api.getmilos.app/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: name,
+          username: email,
+          password: password,
+          token: recaptchaToken,
+        }),
+      })
+        .then((res) => {
+          if (res.status === 201) {
+            res.json().then((data) => {
+              resolve();
+            });
+          } else {
+            res.json().then((data) => {
+              console.log(data);
+              reject();
+            });
+          }
+        })
+        .catch((error) => {
+          reject();
+        });
+    });
   }
 
 
@@ -228,7 +228,7 @@ export default function Signup() {
               </CardBody>
               <CardFooter>
                 <ReCAPTCHA theme="dark" sitekey="6LdPHi0kAAAAAB9y1A8wns_RqUQS81ZIzGoLPlbR" onChange={(token) => setRecaptchaToken(token)}/>
-                <Button className="btn-round" color="info" size="lg" onClick={signup} disabled={!isEnabled}>
+                <Button className="btn-round" color="info" size="lg" onClick={handleClick} disabled={!isEnabled}>
                   Get Started
                 </Button>
                 <ToastContainer limit={1}/>
