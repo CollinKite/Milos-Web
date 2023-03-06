@@ -1,5 +1,5 @@
 import React, { useState, Fragment } from 'react';
-import { Table, Button, Card, CardBody, FormGroup, Label, Input} from 'reactstrap';
+import { Table, Button, Card, CardBody, FormGroup, Label, Input, Container} from 'reactstrap';
 import LoggedInNavbar from 'components/Navbars/LoggedInNavbar';
 import { toast, ToastContainer } from 'react-toastify';
 import Footer from './Footer/Footer';
@@ -155,110 +155,112 @@ const BlogPage = () => {
       <LoggedInNavbar />
       <div className="page-header header-filter">
         <div className="section">
-        <ToastContainer/>
-        <Card className="card-user">
-            <CardBody>
-                <Table>
-                    <thead>
-                    <tr>
-                        <th>
-                        <br />
-                        <br />
-                        Name
-                        </th>
-                        <th className="text-right">
-                        Last Refeshed At{' '}
-                        {refreshedAt.toLocaleTimeString() + ' - ' +
-                            refreshedAt.toLocaleDateString() +
-                            '‎ ‎ ‎ '}
-                        <Button className="btn-icon" color="info" size="sm" onClick={getBlogs}>
-                            <i className="tim-icons icon-refresh-02"></i>
-                        </Button>
-                        <br />
-                        <br />
-                        Actions
-                        </th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {blogs.map((blog, index) => (
-                        <Fragment key={blog.id}>
-                            <tr>
-                                <td>{blog.name}</td>
-                                <td className="text-right">
-                                    <Button
-                                    className="btn-icon"
-                                    color="info"
-                                    size="sm"
-                                    onClick={() => toggleBlog(index)}
-                                    >
-                                    <i className="fa fa-eye"></i>
-                                    </Button>{' '}
-                                    <Button
-                                    className="btn-icon"
-                                    color="success"
-                                    size="sm"
-                                    onClick={() => toggleEdit(index)}
-                                    >
-                                    <i className="fa fa-edit"></i>
-                                    </Button>{' '}
-                                    <Button className="btn-icon" color="danger" size="sm"  onClick={() => handleDeleteBlog(blog.name, index)}>
-                                    <i className="fa fa-times" />
-                                    </Button>
-                                </td>
-                            </tr>
-                                    {blog.show && (
-                                        <tr>
-                                            <td colSpan="2">
-                                                <p>{blog.blog}</p>
-                                            </td>
-                                        </tr>
-                                    )}
-                                    {blog.showEdit && (
-                                        <div>
-                                            <form>
-                                                <FormGroup>
-                                                <Label for={`name-${index}`}>Name</Label>
-                                                    <Input
-                                                    type="text"
-                                                    id={`name-${index}`}
-                                                    value={blog.name}
-                                                    onChange={(event) =>
-                                                        handleNameChange(index, event)
-                                                    }
-                                                    />
-                                                </FormGroup>
-                                                <FormGroup>
-                                                    <Label for={`blog-${index}`}>Blog</Label>
-                                                    <Input
-                                                    type="textarea"
-                                                    id={`blog-${index}`}
-                                                    value={blog.blog}
-                                                    onChange={(event) =>
-                                                        handleBlogChange(index, event)
-                                                    }
-                                                    />
-                                                </FormGroup>
-                                                <Button
-                                                    className="btn-round btn btn-info btn-lg"
-                                                    color="success"
-                                                    size="large"
-                                                    onClick={() => handleSaveChanges(index)}
-                                                >
-                                                    Save Changes
-                                                </Button>
-                                            </form>
-                                        </div>
-                                    )}
-                        </Fragment>
-                    ))}
-                    </tbody>
-                </Table>
-            </CardBody>
-        </Card>
+          <Container>
+            <ToastContainer/>
+            <Card className="card-user">
+                <CardBody>
+                    <Table responsive>
+                        <thead>
+                        <tr>
+                            <th>
+                            <br />
+                            <br />
+                            Name
+                            </th>
+                            <th className="text-right">
+                            Last Refeshed At{' '}
+                            {refreshedAt.toLocaleTimeString() + ' - ' +
+                                refreshedAt.toLocaleDateString() +
+                                '‎ ‎ ‎ '}
+                            <Button className="btn-icon" color="info" size="sm" onClick={getBlogs}>
+                                <i className="tim-icons icon-refresh-02"></i>
+                            </Button>
+                            <br />
+                            <br />
+                            Actions
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {blogs.map((blog, index) => (
+                            <Fragment key={blog.id}>
+                                <tr>
+                                    <td>{blog.name}</td>
+                                    <td className="text-right">
+                                        <Button
+                                        className="btn-icon"
+                                        color="info"
+                                        size="sm"
+                                        onClick={() => toggleBlog(index)}
+                                        >
+                                        <i className="fa fa-eye"></i>
+                                        </Button>{' '}
+                                        <Button
+                                        className="btn-icon"
+                                        color="success"
+                                        size="sm"
+                                        onClick={() => toggleEdit(index)}
+                                        >
+                                        <i className="fa fa-edit"></i>
+                                        </Button>{' '}
+                                        <Button className="btn-icon" color="danger" size="sm"  onClick={() => handleDeleteBlog(blog.name, index)}>
+                                        <i className="fa fa-times" />
+                                        </Button>
+                                    </td>
+                                </tr>
+                                        {blog.show && (
+                                            <tr>
+                                                <td colSpan="2">
+                                                    <p>{blog.blog}</p>
+                                                </td>
+                                            </tr>
+                                        )}
+                                        {blog.showEdit && (
+                                            <div>
+                                                <form>
+                                                    <FormGroup>
+                                                    <Label for={`name-${index}`}>Name</Label>
+                                                        <Input
+                                                        type="text"
+                                                        id={`name-${index}`}
+                                                        value={blog.name}
+                                                        onChange={(event) =>
+                                                            handleNameChange(index, event)
+                                                        }
+                                                        />
+                                                    </FormGroup>
+                                                    <FormGroup>
+                                                        <Label for={`blog-${index}`}>Blog</Label>
+                                                        <Input
+                                                        type="textarea"
+                                                        id={`blog-${index}`}
+                                                        value={blog.blog}
+                                                        onChange={(event) =>
+                                                            handleBlogChange(index, event)
+                                                        }
+                                                        />
+                                                    </FormGroup>
+                                                    <Button
+                                                        className="btn-round btn btn-info btn-lg"
+                                                        color="success"
+                                                        size="large"
+                                                        onClick={() => handleSaveChanges(index)}
+                                                    >
+                                                        Save Changes
+                                                    </Button>
+                                                </form>
+                                            </div>
+                                        )}
+                            </Fragment>
+                        ))}
+                        </tbody>
+                    </Table>
+                </CardBody>
+            </Card>
+          </Container>
         </div>
-        <Footer />
       </div>
+    <Footer/> 
     </>
   );
 };

@@ -2,10 +2,9 @@ import React, { useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { ToastContainer, toast } from 'react-toastify';
 import '../../node_modules/react-toastify/dist/ReactToastify.css';
-import {
-  Button,
-} from "reactstrap";
+import {Button, Container, Card} from "reactstrap";
 import Footer from 'components/Footer/Footer';
+import LoggedInNavbar from 'components/Navbars/LoggedInNavbar';
 
 export default function Milos() {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -41,18 +40,23 @@ export default function Milos() {
       fetch('http://127.0.0.1:5000/upload', {
         method: 'POST',
         body: formData,
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('token')}`,
+        },
       }).then((response) => {
         if (!response.ok) {
-          throw new Error('Upload failed');
+          throw new Error(response.json);
         }
       }),
       {
         pending: 'Uploading...',
         success: 'Upload successful 🎉',
-        error: 'Upload failed 😞',
+        error: 'Upload failed 😞 Please make sure your file is a valid .mp3 or .mp4 file',
       },
       props
-    );
+    ).finally(() => {
+      setSelectedFile(null);
+    });
   };
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
@@ -62,20 +66,29 @@ export default function Milos() {
   });
 
   return (
-    <div>
-      <ToastContainer />
-      <div {...getRootProps()} className={`dropzone ${isDragActive ? 'active' : ''}`}>
-        <input {...getInputProps()} />
-        {selectedFile === null ? (
-          <p>Drag and drop a file here, or click to select a file</p>
-        ) : (
-          <p>Selected file: {selectedFile.name}</p>
-        )}
+    <>
+      <LoggedInNavbar />
+      <div className="page-header header-filter">
+        <div className="content-center">
+        <ToastContainer />
+          <Container>
+            <Card className="card-user">
+            <div {...getRootProps()} className={`dropzone ${isDragActive ? 'active' : ''}`}>
+              <input {...getInputProps()} />
+              {selectedFile === null ? (
+                <p>Drag and drop a file here, or click to select a file <br/> Supported File Types: .MP3 or .MP4</p>
+              ) : (
+                <p>Selected file: {selectedFile.name}</p>
+              )}
+            </div>
+            <Button onClick={handleUpload} disabled={selectedFile === null} color="success">
+              Upload
+            </Button>
+            </Card>
+          </Container>
+        </div>
       </div>
-      <Button onClick={handleUpload} disabled={selectedFile === null} color="success">
-        Upload
-      </Button>
       <Footer/>
-    </div>
+    </>
   );
 }
