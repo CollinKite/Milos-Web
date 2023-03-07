@@ -37,7 +37,7 @@ export default function Milos() {
     };
 
     toast.promise(
-      fetch('http://127.0.0.1:5000/upload', {
+      fetch('http://143.198.238.130:5000/upload', {
         method: 'POST',
         body: formData,
         headers: {
