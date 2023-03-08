@@ -35,10 +35,16 @@ export default function IndexNavbar() {
   const [collapseOpen, setCollapseOpen] = React.useState(false);
   const [collapseOut, setCollapseOut] = React.useState("");
   const [color, setColor] = React.useState("navbar-transparent");
+  const [isMobile, setIsMobile] = React.useState(
+    window.innerWidth < 992 ? true : false
+  );
+
   React.useEffect(() => {
     window.addEventListener("scroll", changeColor);
+    window.addEventListener("resize", handleResize);
     return function cleanup() {
       window.removeEventListener("scroll", changeColor);
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
   const changeColor = () => {
@@ -54,6 +60,11 @@ export default function IndexNavbar() {
       setColor("navbar-transparent");
     }
   };
+
+  const handleResize = () => {
+    setIsMobile(window.innerWidth < 992 ? true : false);
+  };
+
   const toggleCollapse = () => {
     document.documentElement.classList.toggle("nav-open");
     setCollapseOpen(!collapseOpen);
@@ -138,6 +149,49 @@ export default function IndexNavbar() {
                 <p className="d-lg-none d-xl-none">Linkedin</p>
               </NavLink>
             </NavItem>
+
+            {isMobile && (
+              <>
+                <NavItem>
+                  <NavLink
+                    data-placement="bottom"
+                    href="#"
+                    onClick={logout}
+                    rel="noopener noreferrer"
+                    title="Logout"
+                  >
+                    <i className="tim-icons icon-single-02" />
+                    <p className="d-lg-none d-xl-none">Logout</p>
+                  </NavLink>
+                </NavItem>
+                
+                <NavItem>
+                <NavLink
+                  data-placement="bottom"
+                  href="/upload"
+                  rel="noopener noreferrer"
+                  title="upload"
+                >
+                  <i className="tim-icons icon-upload" />
+                  <p className="d-lg-none d-xl-none">Upload</p>
+                </NavLink>
+              </NavItem>
+              
+              <NavItem>
+                <NavLink
+                  data-placement="bottom"
+                  href="/blogs"
+                  rel="noopener noreferrer"
+                  title="blogs"
+                >
+                  <i className="tim-icons icon-single-copy-04" />
+                  <p className="d-lg-none d-xl-none">View Generated Blogs</p>
+                </NavLink>
+              </NavItem>
+
+            </>
+            )}
+
             <NavItem>
               <Button
                 className="nav-link d-none d-lg-block"

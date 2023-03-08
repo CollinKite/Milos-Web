@@ -1,20 +1,3 @@
-/*!
-
-=========================================================
-* BLK Design System React - v1.2.1
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/blk-design-system-react
-* Copyright 2022 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/blk-design-system-react/blob/main/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
 import React from "react";
 import { Link } from "react-router-dom";
 // reactstrap components
@@ -35,10 +18,15 @@ export default function IndexNavbar() {
   const [collapseOpen, setCollapseOpen] = React.useState(false);
   const [collapseOut, setCollapseOut] = React.useState("");
   const [color, setColor] = React.useState("navbar-transparent");
+  const [isMobile, setIsMobile] = React.useState(
+    window.innerWidth < 992 ? true : false
+  );
   React.useEffect(() => {
     window.addEventListener("scroll", changeColor);
+    window.addEventListener("resize", handleResize);
     return function cleanup() {
       window.removeEventListener("scroll", changeColor);
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
   const changeColor = () => {
@@ -54,6 +42,11 @@ export default function IndexNavbar() {
       setColor("navbar-transparent");
     }
   };
+
+  const handleResize = () => {
+    setIsMobile(window.innerWidth < 992 ? true : false);
+  };
+
   const toggleCollapse = () => {
     document.documentElement.classList.toggle("nav-open");
     setCollapseOpen(!collapseOpen);
@@ -132,6 +125,20 @@ export default function IndexNavbar() {
                 <p className="d-lg-none d-xl-none">Linkedin</p>
               </NavLink>
             </NavItem>
+            {isMobile && (
+              <NavItem>
+                <NavLink
+                  data-placement="bottom"
+                  href="/login"
+                  rel="noopener noreferrer"
+                  title="Login"
+                >
+                  <i className="tim-icons icon-single-02" />
+                  <p className="d-lg-none d-xl-none">Login</p>
+                </NavLink>
+              </NavItem>
+            )}
+            {!isMobile && (
             <NavItem>
               <Button
                 className="nav-link d-none d-lg-block"
@@ -142,6 +149,7 @@ export default function IndexNavbar() {
                 <i className="tim-icons icon-single-02" /> Login
               </Button>
             </NavItem>
+            )}
           </Nav>
         </Collapse>
       </Container>
