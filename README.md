@@ -1,4 +1,5 @@
 # Milos - Frontend
+![Flow Chart](https://cdn.discordapp.com/attachments/1059351267991879770/1083835825596416010/Capstone.png)
 ![Landing Page](https://cdn.discordapp.com/attachments/1059351267991879770/1080243587842854952/Screenshot_2023-02-28_at_1.53.09_PM.png)
 ![Login](https://cdn.discordapp.com/attachments/1059351267991879770/1080243594012676147/Screenshot_2023-02-28_at_1.53.22_PM.png)
 
