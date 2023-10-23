@@ -85,7 +85,7 @@ export default function Tabs() {
                     </p>
                   </TabPane>
                   <TabPane tabId="link2">
-                    <img alt="..." className="img-fluid rounded-circle shadow" src="https://media.licdn.com/dms/image/D5603AQH3D_ws8aCFOg/profile-displayphoto-shrink_400_400/0/1673111179485?e=1680134400&v=beta&t=C8Qrp_FthROMO7XtVHGhH0zygfC9DKRA3BO8oDGWY-M" style={{display:"block", marginLeft:"auto", marginRight:"auto", width:"200px", marginBottom:"30px"}}></img>
+                    <img alt="..." className="img-fluid rounded-circle shadow" src="https://media.discordapp.net/attachments/397594782664491010/1080686542042964078/IMG_0655.JPG?ex=65431145&is=65309c45&hm=91f677562ce6285593674f58c5a356aecc9820a80084cc7e5e13d145f905e319&=&width=400&height=400" style={{display:"block", marginLeft:"auto", marginRight:"auto", width:"200px", marginBottom:"30px"}}></img>
                     <p>
                       My Name's Collin Kite, I love learning new things, and building fullstack apps! <br />
                       <br />
