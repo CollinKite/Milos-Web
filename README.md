@@ -1,7 +1,7 @@
 # Milos - Frontend
-![Flow Chart](https://cdn.discordapp.com/attachments/1059351267991879770/1083835825596416010/Capstone.png)
-![Landing Page](https://cdn.discordapp.com/attachments/1059351267991879770/1080243587842854952/Screenshot_2023-02-28_at_1.53.09_PM.png)
-![Login](https://cdn.discordapp.com/attachments/1059351267991879770/1080243594012676147/Screenshot_2023-02-28_at_1.53.22_PM.png)
+![Flow Chart](https://media.discordapp.net/attachments/1059351267991879770/1083835825596416010/Capstone.png?ex=65fdddc5&is=65eb68c5&hm=76a7b96d7b283b3ebbeb4a43642ff914ee491828711c0c0039ec216e4f91b296&=&format=webp&quality=lossless&width=1147&height=910)
+![Landing Page](https://media.discordapp.net/attachments/1059351267991879770/1080243587842854952/Screenshot_2023-02-28_at_1.53.09_PM.png?ex=6603413d&is=65f0cc3d&hm=04b4df669efd4f908ea4a21997e7e6eded8a422538187ed3ca7b636779ccf8da&=&format=webp&quality=lossless&width=1628&height=910)
+![Login](https://cdn.discordapp.com/attachments/1059351267991879770/1080243594012676147/Screenshot_2023-02-28_at_1.53.22_PM.png?ex=6603413e&is=65f0cc3e&hm=2eaea62b64fbe54fafb0f2f13dbf3ac8d52aaebc78c82606196a7f6ef4c9e5e2&)
 
 MILOS is a web app that helps users create blog posts from videos by generating captions and putting them through a trained GPT-3 Model which will automatically break the video down into multiple chapters and generate the blog post. Technology involves, OpenAI Whisper and GPT-3, MongoDB, React, Python/Flask, and Azure for cloud deployment.
 
